@@ -135,7 +135,7 @@
 		
 		$.ajax({
 			type: "GET",
-			  url: "http://www.omdbapi.com/?i="+movieid+"&apikey=132e68f8",
+			  url: "https://www.omdbapi.com/?i="+movieid+"&apikey=132e68f8",
 			  dataType: "json",
 				success: function(data) {  
 				$('#movie-info-content').append('<img class="movie-bg" src="'+data.Poster+'"><div class="row"><div class="col text-left"><h2 class="section">'+data.Title+'</h2><h3 class="sub-section"><span><a href="index.html">Página Inicial</a> > </span>'+data.Title+'</h3></div></div><div class="row"><div class="col-lg-12"><p class="movie-plot">'+data.Plot+'</p></div></div><div class="row">  <div class="col-lg-4 text-center"><img src="'+data.Poster+'">  </div><div class="col-lg-8"><div class="tags"><span class="stars" data-rating="'+data.imdbRating+'" data-num-stars="10" ></span><span class="genre" data-toggle="tooltip" data-placement="top" title="Gênero"><i class="fas fa-film"></i> '+data.Genre+'</span> </div><div class="tags"><span class="year" data-toggle="tooltip" data-placement="top" title="Ano"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime" data-toggle="tooltip" data-placement="top" title="Duração"><i class="far fa-clock"></i> '+data.Runtime+'</span><span class="country" data-toggle="tooltip" data-placement="top" title="País"><i class="fas fa-globe"></i> '+data.Contry+'</span> <span class="language" data-toggle="tooltip" data-placement="top" title="Idioma"><i class="fas fa-comments"></i> '+data.Language+'</span></div><div class="tags"><span class="awards" data-toggle="tooltip" data-placement="top" title="Premiações"><i class="fas fa-trophy"></i> '+data.Awards+'</span></div><div class="tags"><span class="actors" data-toggle="tooltip" data-placement="top" title="Atores"><i class="fas fa-users"></i> '+data.Actors+'</span></div><div class="tags"><span class="writer" data-toggle="tooltip" data-placement="top" title="Escritor"><i class="fas fa-pencil-alt"></i> '+data.Writer+'</span> </div><div class="tags"><span class="director" data-toggle="tooltip" data-placement="top" title="Diretor"><i class="fas fa-user"></i> '+data.Director+'</span></div><div class="tags"><span class="production" data-toggle="tooltip" data-placement="top" title="Produtora"><i class="fas fa-video"></i> '+data.Production+'</span></div></div></div>');
@@ -159,13 +159,13 @@
 			$.ajax({
 				type: "GET",
 				// Connect to omdb api
-				url: "http://www.omdbapi.com/?i="+id+"&apikey=132e68f8",
+				url: "https://www.omdbapi.com/?i="+id+"&apikey=132e68f8",
 				dataType: "json",
 				
 				success: function(data) {
 					if (data.Year == '2018')
 					
-					$('#movies-list').append('<div class="col-6 col-lg-3 movie-item"><div class="blocks"><img class="image-thumbnail" src="'+data.Poster+'" alt="'+data.Title+'"><h3>'+data.Title+'</h3><div class="tags"><span class="genre"><i class="fas fa-film"></i> '+data.Genre+'</span><br><span class="year"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime"><i class="far fa-clock"></i> '+data.Runtime+'</span></div><p>'+data.Plot+'</p></div><a href="movie-content.html?movie='+id+'"><div class="more-info"><div class="see-more-info-search"><i class="fas fa-search fa-6x"></i><div class="see-more-info"><span>Ver informações</span></div></div></div></a></div>');
+					$('#movies-list').append('<div class="col-6 col-lg-3 movie-item"><div class="blocks"><img class="image-thumbnail" src="'+data.Poster+'" alt="'+data.Title+'"><h3>'+data.Title+'</h3><div class="tags"><span class="genre"><i class="fas fa-film"></i> '+data.Genre+'</span><br><span class="year"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime"><i class="far fa-clock"></i> '+data.Runtime+'</span></div><p>'+data.Plot+'</p></div><a href="content.html?movie='+id+'"><div class="more-info"><div class="see-more-info-search"><i class="fas fa-search fa-6x"></i><div class="see-more-info"><span>Ver informações</span></div></div></div></a></div>');
 				  }
 				});
 			}
