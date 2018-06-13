@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="keywords" content="movies,list,repository,imdb">
+    <meta name="description" content="My movies is a repository of movies from IMDB">
+    <meta name="author" content="Marcos Paulo">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="favicon.ico">
+
+
+    <title>My Movies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <!-- Google Fonts Open Sans CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+    <!-- Font Awesome core CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- My Movies Styles -->
+    <link href="css/mymovies.css" rel="stylesheet">
+    <link href="css/carousel.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto"><li class="nav-item"></li></ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input id="search-field" class="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+        
+      <!-- RESULTS PAGE -->
+
+      <div class="container new-releases">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="section">Resultado da pesquisa por:</h2>
+				<p id="movie-search-name" class="section-p"></p>
+            </div>    
+        </div>
+        
+		<!-- RESULTS MOVIES LIST -->
+		  
+        <div class="row" id="movies-list">
+          
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+		
+      <footer class="container">
+        <p class="float-right"><a class="btn btn-md btn-dark" href="#" role="button"><i class="fas fa-arrow-up"></i> Topo</a></p>
+        <p>&copy; 2018 My Movies &middot; Todos os Direitos Reservados</p>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+	<script>
+	$( document ).ready(function() {
+        
+        /* SEARCH */
+        $( ".form-inline" ).submit(function( event ) {
+            var search = $("#search-field").val();  
+                window.location = 'search.html?movie=' + search;
+            event.preventDefault();
+        });
+        
+        /* CONNECTION FOR SEARCH RESULTS */
+		var getUrlParameter = function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		};
+		
+		var movieid = getUrlParameter('movie');
+        
+        $('#movie-search-name').append(movieid);
+
+			$.ajax({
+				type: "GET",
+				// Connect to omdb api
+				url: "https://www.omdbapi.com/?t="+movieid+"&apikey=132e68f8",
+				dataType: "json",
+				
+				success: function(data) {
+                    
+					$('#movies-list').append('<div class="col-lg-3 movie-item"><div class="blocks"><img class="image-thumbnail" src="'+data.Poster+'" alt="'+data.Title+'"><h3>'+data.Title+'</h3><div class="tags"><span class="genre"><i class="fas fa-film"></i> '+data.Genre+'</span><br><span class="year"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime"><i class="far fa-clock"></i> '+data.Runtime+'</span></div><p>'+data.Plot+'</p></div><a href="content.html?movie='+data.imdbID+'"><div class="more-info"><div class="see-more-info-search"><i class="fas fa-search fa-6x"></i><div class="see-more-info"><span>Ver informações</span></div></div></div></a></div>');
+                    
+				  }
+				});
+		});
+	  </script>
+  </body>
+</html>

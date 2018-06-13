@@ -49,6 +49,7 @@ header .logo {
     font-weight: 600;
     font-size: 2rem;
     color:#feba21;
+    margin-top:2rem;
 }
 .new-releases p.section-p {
     font-size: 1rem;
@@ -200,6 +201,13 @@ img.movie-bg {
 @media (max-width: 600px) {
     .carousel-item img.img-fluid {
         padding-bottom: 3rem;
+    }
+    input#search-field {
+        width:60%;
+    }
+    button.btn.btn-outline-warning.my-2.my-sm-0 {
+        width: 35%;
+        margin-left: 5%;
     }
 
 }

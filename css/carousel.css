@@ -2,9 +2,6 @@
 -------------------------------------------------- */
 
 /* Carousel base class */
-.carousel {
-    margin-bottom: 2rem;
-}
 .carousel .container{
     padding: 3rem;
 }
