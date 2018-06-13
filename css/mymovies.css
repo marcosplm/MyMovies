@@ -13,11 +13,34 @@ a:hover {color:#efefef;}
 
 .bg-dark { background:#24292d!important; }
 
+a.nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: .8rem;
+    background: #343a40;
+    border-radius: .5rem;
+    margin: 0 .5rem;
+    padding-right: 1.5rem!important;
+    padding-left: 1rem!important;
+    color: #b5b5b5!important;
+}
+
+a.nav-link:hover, a.nav-link.active {
+    background: #feba21;
+    color: #383121!important;
+}
+
+/* FIX STYLE
+-------------------------------------------------- */
+.btn-warning {
+    background-color: #feba21!important;
+    color: #383121!important;
+    border-radius: .5rem;
+}
 /* CUSTOMIZE THE STYLE
 -------------------------------------------------- */
 /* The Header */
 header .logo {
-    max-height: 3.2rem;
+    max-height: 3rem;
 }
 
 /* Movie Tags */
@@ -209,5 +232,9 @@ img.movie-bg {
         width: 35%;
         margin-left: 5%;
     }
-
+    a.nav-link {
+        margin-bottom: .8rem;
+        text-align: center;
+        width: 55%;
+    }
 }
