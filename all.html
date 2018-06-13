@@ -69,7 +69,10 @@
 		<!-- ALL MOVIES LIST -->
 		  
         <div class="row" id="movies-list">
-          
+          	<div class="text-center" id="spinner">
+				<h3>Carregando...</h3>
+				<div class="spin"><span class="one"></span><span class="two"></span><span class="three"></span></div>
+			</div>
         </div>
 
       </div>
@@ -118,7 +121,7 @@
 				dataType: "json",
 				
 				success: function(data) {
-                        
+					$("#spinner").hide();
 					$('#movies-list').append('<div class="col-6 col-lg-3 movie-item"><div class="blocks"><img class="image-thumbnail" src="'+data.Poster+'" alt="'+data.Title+'"><h3>'+data.Title+'</h3><div class="tags"><span class="genre"><i class="fas fa-film"></i> '+data.Genre+'</span><br><span class="year"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime"><i class="far fa-clock"></i> '+data.Runtime+'</span></div><p>'+data.Plot+'</p></div><a href="content.html?movie='+id+'"><div class="more-info"><div class="see-more-info-search"><i class="fas fa-search fa-6x"></i><div class="see-more-info"><span>Ver informações</span></div></div></div></a></div>');
                     
 				  }

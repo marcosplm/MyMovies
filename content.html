@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <meta name="keywords" content="movies,list,repository,imdb">
-    <meta name="description" content="Lawrence of Arabia - My movies is a repository of movies from IMDB">
+    <meta name="description" content="My movies is a repository of movies from IMDB">
     <meta name="author" content="Marcos Paulo">
     
     <!-- Favicons -->
@@ -14,7 +14,7 @@
     <link rel="icon" href="favicon.ico">
 
 
-    <title>My Movies - Lawrence of Arabia</title>
+    <title>My Movies</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -59,6 +59,10 @@
       <!-- MOVIE CONTENT -->
         
         <div id="movie-info-content" class="container movie-content">
+          	<div class="text-center" id="spinner">
+				<h3>Carregando...</h3>
+				<div class="spin"><span class="one"></span><span class="two"></span><span class="three"></span></div>
+			</div>
         </div>
         
 		<div class="container">
@@ -157,7 +161,8 @@
 			type: "GET",
 			  url: "https://www.omdbapi.com/?i="+movieid+"&apikey=132e68f8",
 			  dataType: "json",
-				success: function(data) {  
+				success: function(data) {
+				$("#spinner").hide();
 				$('#movie-info-content').append('<img class="movie-bg" src="'+data.Poster+'"><div class="row"><div class="col text-left"><h2 class="section">'+data.Title+'</h2><h3 class="sub-section"><span><a href="index.html">Página Inicial</a> > </span>'+data.Title+'</h3></div></div><div class="row"><div class="col-lg-12"><p class="movie-plot">'+data.Plot+'</p></div></div><div class="row">  <div class="col-lg-4 text-center"><img src="'+data.Poster+'">  </div><div class="col-lg-8"><div class="tags"><span class="genre" data-toggle="tooltip" data-placement="top" title="Gênero"><i class="fas fa-film"></i> '+data.Genre+'</span> <span class="stars" data-rating="'+data.imdbRating+'" data-num-stars="10" ></span></div><div class="tags"><span class="year" data-toggle="tooltip" data-placement="top" title="Ano"><i class="far fa-calendar-alt"></i> '+data.Year+'</span><span class="runtime" data-toggle="tooltip" data-placement="top" title="Duração"><i class="far fa-clock"></i> '+data.Runtime+'</span><span class="country" data-toggle="tooltip" data-placement="top" title="País"><i class="fas fa-globe"></i> '+data.Country+'</span> <span class="language" data-toggle="tooltip" data-placement="top" title="Idioma"><i class="fas fa-comments"></i> '+data.Language+'</span></div><div class="tags"><span class="awards" data-toggle="tooltip" data-placement="top" title="Premiações"><i class="fas fa-trophy"></i> '+data.Awards+'</span></div><div class="tags"><span class="actors" data-toggle="tooltip" data-placement="top" title="Atores"><i class="fas fa-users"></i> '+data.Actors+'</span></div><div class="tags"><span class="writer" data-toggle="tooltip" data-placement="top" title="Escritor"><i class="fas fa-pencil-alt"></i> '+data.Writer+'</span> </div><div class="tags"><span class="director" data-toggle="tooltip" data-placement="top" title="Diretor"><i class="fas fa-user"></i> '+data.Director+'</span></div><div class="tags"><span class="production" data-toggle="tooltip" data-placement="top" title="Produtora"><i class="fas fa-video"></i> '+data.Production+'</span></div></div></div>');
 
 			  }
